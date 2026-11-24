@@ -21,6 +21,9 @@ let candyBucketFrames = [];
 let candyBucketCurrentFrame = 0;
 let candyBucketFrameDelay = 10;
 
+let candy;
+let candyImg;
+
 function preload() {
     gulosumosImg = loadImage("images/gulosumos.png");
     gulosumosFrames.push(loadImage("images/gulosumos.png"));
@@ -29,6 +32,8 @@ function preload() {
     candyBucketImg = loadImage("images/halloween-candy-bucket.png");
     candyBucketFrames.push(loadImage("images/halloween-candy-bucket.png"));
     candyBucketFrames.push(loadImage("images/halloween-candy-bucket-open.png"));
+
+    candyImg = loadImage("images/candy.png");
 }
 
 function setup() {
@@ -42,7 +47,7 @@ function setup() {
 }
 
 function draw() {
-    background(255, 0, 0);
+    background("#34e3af");
 
     Engine.update(engine);
 
@@ -57,6 +62,8 @@ function draw() {
     rotate(-HALF_PI * 2);
     image(candyBucketImg, -80,-80, 100,100);
     pop();
+
+    image(candyImg, 129,455, 60,24);
 
     drawCandyBucket();
     drawGulosumos();
