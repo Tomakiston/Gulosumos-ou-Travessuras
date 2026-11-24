@@ -23,6 +23,9 @@ let candyBucketFrameDelay = 10;
 
 let candy;
 let candyImg;
+let candies = [];
+let candySpeed = 2;
+let candySpacing = 50;
 
 function preload() {
     gulosumosImg = loadImage("images/gulosumos.png");
@@ -44,6 +47,14 @@ function setup() {
 
     engine = Engine.create();
     world = engine.world;
+
+    for(let i = 0; i < 20; i++) {
+        candies.push({
+            x: 129,
+            y: 455 + (i * candySpacing),
+            speed: candySpeed
+        });
+    }
 }
 
 function draw() {
@@ -67,6 +78,9 @@ function draw() {
 
     drawCandyBucket();
     drawGulosumos();
+    
+    moveCandy();
+    drawCandies();
     
 }
 
@@ -102,4 +116,18 @@ function drawCandyBucket() {
     }
 
     image(candyBucketFrames[candyBucketCurrentFrame], candyBucket.x,candyBucket.y, candyBucket.size,candyBucket.size);
+}
+
+function drawCandies() {
+    push();
+    for(let i = 0; i < candies.length; i++) {
+        image(candyImg, candies[i].x,candies[i].y, 60,24);
+    }
+    pop();
+}
+
+function moveCandy() {
+    for(let i = 0; i < candies.length; i++) {
+        candies[i].y -= candies[i].speed;
+    }
 }
